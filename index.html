@@ -48,11 +48,7 @@
           />
         </div>
         <div class="col-9">
-          <ul id="strive-list" class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-          </ul>
+          <ul id="strive-list" class="list-group"></ul>
         </div>
       </div>
     </div>
@@ -109,10 +105,12 @@
       function randomAssign() {
         let StriversList = document.querySelectorAll(".list-group-item");
         let StriversTeam = document.querySelectorAll(".ul-of-teams");
-        let num1 = Math.floor(Math.random * 10);
-        let num2 = Math.floor(Math.random * 10);
-        if (num1 < StriversList.length && num2 < StriversTeam.length) {
-          StriversList[num1].appendChild(StriversTeam[num2]);
+        /*let num1 = Math.floor(Math.random * 5);
+        let num2 = Math.floor(Math.random * 5);
+
+        let theChosenOne = StriversList[Math.floor(Math.random * 10)];*/
+        for (i = 0; i < StriversTeam.lengh; i++) {
+          StriversTeam[i].appendChild(StriversList);
         }
       }
     </script>
