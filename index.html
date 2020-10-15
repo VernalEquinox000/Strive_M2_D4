@@ -31,8 +31,24 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <ul class="list-group list-group-horizontal">
+        <div class="col-3">
+          <input type="text" id="new-striver" />
+          <input
+            type="button"
+            class="button"
+            value="Add new Striver"
+            onclick="addNewStriver()"
+          />
+          <input type="number" id="number-of-teams" />
+          <input
+            type="button"
+            class="button"
+            value="Add number of teams"
+            onclick="addNumTeams()"
+          />
+        </div>
+        <div class="col-9">
+          <ul id="strive-list" class="list-group">
             <li class="list-group-item">Cras justo odio</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Morbi leo risus</li>
@@ -40,8 +56,66 @@
         </div>
       </div>
     </div>
+    <div id="team-container" class="container">
+      <div id="row-of-teams" class="row of-col">
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+        <div class="col col-12"></div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
+    <script>
+      function addNewStriver() {
+        let newInputStriver = document.querySelector("#new-striver");
+        //console.log('Your task is', newInputTask.value)
+        createStriversList(newInputStriver.value);
+        newInputStriver.value = "";
+      }
+
+      function createStriversList(newStriverName) {
+        let newLi = document.createElement("li");
+        newLi.innerText = newStriverName;
+        newLi.className = "list-group-item";
+        document.querySelector("#strive-list").appendChild(newLi);
+      }
+
+      function addNumTeams() {
+        let newInputTeams = document.querySelector("#number-of-teams");
+        console.log(newInputTeams.value);
+        createTeams(newInputTeams.value);
+      }
+
+      function createTeams(numTeams) {
+        arrayCol = document.querySelectorAll(".col-12");
+        for (let i = 0; i < numTeams; i++) {
+          let newUl = document.createElement("ul");
+
+          newUl.className = "ul-of-teams";
+          newUl.innerText = "Team " + (i + 1);
+          arrayCol[i].appendChild(newUl);
+        }
+      }
+
+      function randomAssign() {
+        let StriversList = document.querySelectorAll(".list-group-item");
+        let StriversTeam = document.querySelectorAll(".ul-of-teams");
+        let num1 = Math.floor(Math.random * 10);
+        let num2 = Math.floor(Math.random * 10);
+        if (num1 < StriversList.length && num2 < StriversTeam.length) {
+          StriversList[num1].appendChild(StriversTeam[num2]);
+        }
+      }
+    </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
