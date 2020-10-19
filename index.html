@@ -83,16 +83,7 @@
     <!--team container-->
     <div id="team-container" class="flux-container">
       <div id="row-of-teams" class="row">
-        <div id="col-of-teams" class="col col-sm-2 col-md-4 col-lg-6">
-    <!--<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    Team i
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">sto cazzo</li>
-
-  </ul>-->
-        </div>
+      
       </div>
     </div>
 
@@ -126,31 +117,46 @@
       }
 
       function createTeams(numTeams) {
-        let cardsArray=[];
+        let colsArray=[];
         let headerArray=[];
         for (let i = 0; i < numTeams; i++) {
 
-          cardsArray[i] = document.createElement("div");
+          colsArray[i] = document.createElement("div");
 
-          cardsArray[i].className = "card";
-          cardsArray[i].style="width:18rem";
-          cardsArray[i].innerHTML=`<div class="card-header"></div>
-          <ul class="list-group list-group-flush team"></ul>`
-          document.querySelector("#col-of-teams").appendChild(cardsArray[i]);
+          colsArray[i].className = "col col-sm-6 col-md-4 col-lg-2 mt-5";
+      
+          colsArray[i].innerHTML=`<div class="card" style="width:18rem;">
+          <div class="card-header"></div>
+          <ul class="list-group list-group-flush team"></ul>
+          </div>`
+          document.querySelector("#row-of-teams").appendChild(colsArray[i]);}
+      
+
+          for (let k=0; k<numTeams; k++) {
           headerArray=document.querySelectorAll(".card-header");
-          headerArray[i].innerText="team" + (i+1); }
+          headerArray[k].innerText="team" + (k+1);
+
+          }
+
       }
+
+        
+
+
+      function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+
 
       
 
       function randomAssign() {
         let StriversList = document.querySelectorAll(".list-group-item");
+        let StriversListShuffle =shuffle(StriversList);
         let StriversTeam = document.querySelectorAll(".team");
-        let num1 = Math.floor(Math.random * 40);
-        let num2 = Math.floor(Math.random * 10);
-        let st=StriversTeam[num2]
-        let sl=StriversList[num1]
-        sl.appendChild(st);
+        let StriversTeamShuffle =shuffle(StriversTeam);
+        StriversTeamShuffle[0].appendChild(StriversListShuffle[0])
+      }
 
 
         
@@ -158,7 +164,7 @@
         for (i = 0; i < StriversTeam.lengh; i++) {
           StriversTeam[i].appendChild(StriversList);
         }*/
-      }
+      
     </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
