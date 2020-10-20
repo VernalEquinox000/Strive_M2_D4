@@ -114,11 +114,14 @@
         console.log(newInputTeams.value);
         createTeams(newInputTeams.value);
         document.getElementById("team-button").disabled = true;
+        
+        
       }
 
       function createTeams(numTeams) {
         let colsArray=[];
         let headerArray=[];
+        let ulArray=[];
         for (let i = 0; i < numTeams; i++) {
 
           colsArray[i] = document.createElement("div");
@@ -130,33 +133,67 @@
           <ul class="list-group list-group-flush team"></ul>
           </div>`
           document.querySelector("#row-of-teams").appendChild(colsArray[i]);}
-      
 
           for (let k=0; k<numTeams; k++) {
-          headerArray=document.querySelectorAll(".card-header");
-          headerArray[k].innerText="team" + (k+1);
+            headerArray=document.querySelectorAll(".card-header");
+            headerArray[k].innerText="team" + (k+1);
+            ulArray=document.getElementsByClassName("list-group list-group-flush team");
+            ulArray[k].id="team-"+(k+1);
 
           }
+      
+
+          
 
       }
 
-        
-
-
-      function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
 
 
       
 
       function randomAssign() {
-        let StriversList = document.querySelectorAll(".list-group-item");
-        let StriversListShuffle =shuffle(StriversList);
-        let StriversTeam = document.querySelectorAll(".team");
-        let StriversTeamShuffle =shuffle(StriversTeam);
-        StriversTeamShuffle[0].appendChild(StriversListShuffle[0])
+        /*let StriversList = document.querySelectorAll(".list-group-item"); dispendioso*/
+        
+
+        let StriversList = document.getElementsByClassName("list-group-item")
+        let ulArray=document.getElementsByClassName("list-group list-group-flush team")
+        let StriversText =[];
+        for (i=0;i<StriversList.length;i++){
+          StriversText[i]=StriversList[i].innerText;
+        }
+        let indexList = Math.floor(Math.random() * (StriversText.length))
+        console.log(indexList)
+        console.log(StriversText)
+        let theChosenOne = StriversText.splice(indexList,1)
+        document.getElementsByClassName('strive-list').removeChild(StriversText[indexList]);
+        console.log(theChosenOne)
+        let indexTeam = Math.floor(Math.random() * (ulArray.length+1))
+        console.log(indexTeam)
+        /* let theTeam = document.getElementsByClassName("team-"+indexTeam)
+        console.log(theTeam) */
+        console.log(document.getElementById("team-"+indexTeam))
+        let newEl= document.createElement('li');
+        newEl.innerText=theChosenOne;
+        newEl.className="list-group-item";
+        document.getElementById("team-"+indexTeam).appendChild(newEl)
       }
+
+
+        /*genera random num da 0 a StriversList.length -1 da usare come index */
+        /* generare nuovo array senza elemento random slice, splice, removeChild */
+        /* check method haschild, poi rimuovere con removeChild. */
+        /*generare nuovo numero a caso per Team dove finirà il nome della lista */
+        /*inserire id per ogni team*/
+
+        /* Da Riccardo Gulin a Tutti: (2:36 PM)
+ https://www.w3schools.com/jsref/met_node_removechild.asp 
+Da Riccardo Gulin a Tutti: (2:42 PM)
+ const randomTeam = randomFunction() document.getElementById("team-"+randomTeam) document.getElementById(`team-${randomTeam}`
+        
+        let StriversTeam = document.querySelectorAll(".team");
+        
+       
+      } */
 
 
         
